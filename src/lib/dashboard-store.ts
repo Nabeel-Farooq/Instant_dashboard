@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
-import type { Layout } from "react-grid-layout";
+import type { LayoutItem } from "react-grid-layout";
+type Layout = LayoutItem[];
 import type { Subscription } from "./subscriptions";
 
 export type WidgetType =
