@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import GridLayout from "react-grid-layout";
+import GridLayout, { type LayoutItem } from "react-grid-layout";
 import { Widget } from "./widgets/Widget";
 import type { Dashboard } from "@/lib/dashboard-store";
 import type { Subscription } from "@/lib/subscriptions";
@@ -8,7 +8,7 @@ type Props = {
   dashboard: Dashboard;
   subs: Subscription[];
   editing: boolean;
-  onLayoutChange: (l: GridLayout.Layout[]) => void;
+  onLayoutChange: (l: LayoutItem[]) => void;
   onRemoveWidget: (i: string) => void;
   onUpdateSub: (id: string, patch: Partial<Subscription>) => void;
   onDeleteSub: (id: string) => void;
@@ -41,7 +41,7 @@ export function DashboardGrid({
         isDraggable={editing}
         isResizable={editing}
         draggableHandle=".drag-handle"
-        onLayoutChange={onLayoutChange}
+        onLayoutChange={(l) => onLayoutChange(l as LayoutItem[])}
       >
         {dashboard.widgets.map((w) => (
           <div key={w.i}>
