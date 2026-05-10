@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import GridLayout, { type LayoutItem } from "react-grid-layout";
+import GridLayout, { type LayoutItem } from "react-grid-layout/dist/legacy";
 import { Widget } from "./widgets/Widget";
 import type { Dashboard } from "@/lib/dashboard-store";
 import type { Subscription } from "@/lib/subscriptions";
