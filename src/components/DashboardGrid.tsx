@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import GridLayout, { type LayoutItem } from "react-grid-layout/dist/legacy";
+import GridLayout, { type LayoutItem, type Layout } from "react-grid-layout/legacy";
 import { Widget } from "./widgets/Widget";
 import type { Dashboard } from "@/lib/dashboard-store";
 import type { Subscription } from "@/lib/subscriptions";
@@ -41,7 +41,7 @@ export function DashboardGrid({
         isDraggable={editing}
         isResizable={editing}
         draggableHandle=".drag-handle"
-        onLayoutChange={(l) => onLayoutChange(l as LayoutItem[])}
+        onLayoutChange={(l: Layout) => onLayoutChange(l as LayoutItem[])}
       >
         {dashboard.widgets.map((w) => (
           <div key={w.i}>
