@@ -1,6 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
 import type { LayoutItem } from "react-grid-layout";
-type Layout = LayoutItem[];
 import type { Subscription } from "./subscriptions";
 
 export type WidgetType =
@@ -23,7 +22,7 @@ export type Dashboard = {
   id: string;
   name: string;
   widgets: Widget[];
-  layout: Layout[];
+  layout: LayoutItem[];
 };
 
 const SUBS_KEY = "billtrack:subscriptions:v1";
@@ -41,7 +40,7 @@ const DEFAULT_WIDGETS: Widget[] = [
   { i: "w8", type: "list-all" },
 ];
 
-const DEFAULT_LAYOUT: Layout[] = [
+const DEFAULT_LAYOUT: LayoutItem[] = [
   { i: "w1", x: 0, y: 0, w: 3, h: 2, minW: 2, minH: 2 },
   { i: "w2", x: 3, y: 0, w: 3, h: 2, minW: 2, minH: 2 },
   { i: "w3", x: 6, y: 0, w: 3, h: 2, minW: 2, minH: 2 },
@@ -151,7 +150,7 @@ export function useDashboards() {
     const i = `w_${Date.now()}`;
     const maxY = active.layout.reduce((m, l) => Math.max(m, l.y + l.h), 0);
     const isKpi = type.startsWith("kpi");
-    const newLayout: Layout = isKpi
+    const newLayout: LayoutItem = isKpi
       ? { i, x: 0, y: maxY, w: 3, h: 2, minW: 2, minH: 2 }
       : { i, x: 0, y: maxY, w: 6, h: 5, minW: 3, minH: 4 };
     updateActive({
@@ -168,7 +167,7 @@ export function useDashboards() {
     });
   }, [active, updateActive]);
 
-  const setLayout = useCallback((layout: Layout[]) => {
+  const setLayout = useCallback((layout: LayoutItem[]) => {
     if (!active) return;
     updateActive({ layout });
   }, [active, updateActive]);
